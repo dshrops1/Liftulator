@@ -1,6 +1,6 @@
-#LIFTULATOR 
+# LIFTULATOR 
 
-##A calculator app for lifters. 
+## A calculator app for lifters. 
 
 Providing the most buttons for most common plate weights in both pounds and kilograms. In addition will provide networking
 for friends to see individual PR's for common lifts and to leave comments. 
