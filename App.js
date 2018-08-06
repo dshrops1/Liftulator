@@ -1,6 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View,  Alert, TouchableOpacity} from 'react-native';
 
+import { Provider } from 'react-redux'
+import myStore from './myStore/myState'
+
+
+
+
 export default class App extends React.Component {
   render() {
     return (
@@ -40,7 +46,7 @@ export default class App extends React.Component {
         <View style={styles.calculateArea}>
                 {/*use state value inside of text thus a calculated value*/}
                 {/*maybe add style so numbers are bigger and bold*/}
-             <Text style={styles.numberStyle}>245</Text>
+             <Text style={styles.numberStyle}>{myStore.getState().currentCalcValue}</Text>
         </View>
 
 
@@ -305,6 +311,7 @@ export default class App extends React.Component {
 
 
     </View>
+
 
 
 
