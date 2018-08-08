@@ -8,10 +8,20 @@ export default function actions(){
         }
     }
 
+    function changeCurrentCalcValue(changeByAmount){
+
+        return {
+            type: "CHANGE_CURRENT_CALC_VALUE",
+            payload: {
+                changeByAmount,
+            }
+        }
+    }
+
 
     //return all action creators, some actions creators could be just action objects but for consisentcy
     //we make them action creators and dont worry about performance from function calls.
-    return {getCurrentCalcValue,}
+    return {getCurrentCalcValue,changeCurrentCalcValue}
 //    will return an object that exposed the actions
 //or maybe have it return an object that exposes action creators (functions that create our actions)
 
