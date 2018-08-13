@@ -12,7 +12,7 @@ import mainReducer from './myReducers/index'
 
 const initalState = {
 
-    currentCalcValue: 0, //value that will be displayed
+    currentCalcValue: 15, //value that will be displayed
     calculatingValueOne: null, //will be what user pressed to perform such as clicking 45
     calculatingValueTwo: null, //calculations come in pairs what is to be done to what
     operationValue: null,  //when this has a value it will calculate the based on the action of calc1 and calc2 and add it to currentCalcValue
