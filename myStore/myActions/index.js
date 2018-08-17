@@ -1,5 +1,5 @@
 
-export default function actions(){
+ function actions(){
 
     function getCurrentCalcValue(){
 
@@ -18,15 +18,24 @@ export default function actions(){
         }
     }
 
+    function changeButtonStateChoice(value){
 
-    //return all action creators, some actions creators could be just action objects but for consisentcy
-    //we make them action creators and dont worry about performance from function calls.
-    return {getCurrentCalcValue,changeCurrentCalcValue}
-//    will return an object that exposed the actions
-//or maybe have it return an object that exposes action creators (functions that create our actions)
+        return {
+            type: "CHANGE_BUTTON_STATE_CHOICE",
+            payload: {
+                value,
+            }
+        }
+    }
+
+
+
+    return {getCurrentCalcValue,changeCurrentCalcValue,changeButtonStateChoice}
+
 
 }
 
+export default actions()
 
 /*
 * example of action creator

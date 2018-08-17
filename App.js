@@ -1,8 +1,8 @@
 import React from 'react';
-import myStore from './myStore/myState'
+import {Provider} from "react-redux"
 
 import CalculatorVeiw from './components/CalculatorVeiw'
-
+import myState from "./myStore/myState"
 
 
 
@@ -10,8 +10,9 @@ export default class App extends React.Component {
   render() {
     return (
 
-
-        <CalculatorVeiw curr={myStore.getState().currentCalcValue}/>
+      <Provider store={myState}>
+        <CalculatorVeiw/>
+      </Provider>
 
 
 

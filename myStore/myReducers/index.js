@@ -1,7 +1,15 @@
 export default function reducers(state ={}, action){
 
+    switch(action.type){
+        case "CHANGE_BUTTON_STATE_CHOICE":
+            return {...state, buttonStateChoice: action.payload.value }
 
-    return state;
+        default:
+            return state
+
+    }
+
+
 }
 
 //dont mutate state return new state object with updated fields
