@@ -1,19 +1,13 @@
 
  function actions(){
 
-    function getCurrentCalcValue(){
 
-        return {
-            type: "GET_CURRENT_CALC_VALUE"
-        }
-    }
-
-    function changeCurrentCalcValue(changeByAmount){
+    function changeCurrentCalcValue(changeByValue){
 
         return {
             type: "CHANGE_CURRENT_CALC_VALUE",
             payload: {
-                changeByAmount,
+                changeByValue,
             }
         }
     }
@@ -28,9 +22,25 @@
         }
     }
 
+    function clearCurrentValue(){
+        return{
+            type: "CLEAR_CURRENT_VALUE"
+        }
+    }
+
+    function changeOperatorValue(newOperator){
+
+        return {
+            type: "CHANGE_CURRENT_OPERATOR",
+            payload: {
+                newOperator
+            }
+        }
+    }
 
 
-    return {getCurrentCalcValue,changeCurrentCalcValue,changeButtonStateChoice}
+
+    return {changeCurrentCalcValue,changeButtonStateChoice,clearCurrentValue,changeOperatorValue}
 
 
 }

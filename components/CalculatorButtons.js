@@ -4,26 +4,37 @@ import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import myStore from '../myStore/myState'
 import myActions from "../myStore/myActions"
 
-export default CalculatorButtons = ({poundsOrLbs, units}) =>{
+export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clearCurrValue, changeOperator}) =>{
 
+    //take this whole thing out and do this logic in redux
      unitSwitch = () => {
 
         switch(myStore.getState().buttonStateChoice){
             case 0:
                 //going to dispatch an action here
                 myStore.dispatch(myActions.changeButtonStateChoice(1))
-                // Alert.alert("reached case 1");
+
+                //another dispatch here for converting from lbs to kgs - make associateed action-
+
 
                 break;
             case 1:
                 //going to dispatch an action here
                 myStore.dispatch(myActions.changeButtonStateChoice(0))
-                // Alert.alert("reached case 2")
+                //another dispatch here for converting from kgs to lbs -make associated action
                 break;
             default:
                 Alert.alert("reached case default")
                 break;
         }
+    }
+
+
+
+    operatorChange = (value) => {
+
+         // dispatch an action for changing something in state called operator which will be a string for current operation
+        //probally just make this come from a mapDispatchToProps as well
     }
 
     return(
@@ -33,7 +44,7 @@ export default CalculatorButtons = ({poundsOrLbs, units}) =>{
                 {/*45lbs or 25kgs*/}
                 <TouchableOpacity
                     style={styles.calcButtonsMain}
-                    onPress={()=>Alert.alert("this is either 45lbs or 25kg")}
+                    onPress={()=>(poundsOrLbs === 0) ? buttonValuePress(45): buttonValuePress(25)}
                 >
                     {/*text will also be based of state thus a calculated value*/}
                     <Text>
@@ -44,7 +55,7 @@ export default CalculatorButtons = ({poundsOrLbs, units}) =>{
                 {/*35lbs or 20kgs */}
                 <TouchableOpacity
                     style={styles.calcButtonsMain}
-                    onPress={()=> Alert.alert("this is either 35lbs or 20kg")}
+                    onPress={()=> (poundsOrLbs === 0) ? buttonValuePress(35): buttonValuePress(20)}
                 >
                     <Text>
                         {myStore.getState().buttonStates[myStore.getState().buttonStateChoice][1]}
@@ -55,7 +66,7 @@ export default CalculatorButtons = ({poundsOrLbs, units}) =>{
                 {/*division */}
                 <TouchableOpacity
                     style={styles.calcButtonsMain}
-                    onPress={()=> Alert.alert("will divide calculated value by value typed after")}
+                    onPress={()=> changeOperator("/") }
                 >
                     <Text>
                         /
@@ -74,7 +85,7 @@ export default CalculatorButtons = ({poundsOrLbs, units}) =>{
                 {/*25lbs or 15kgs*/}
                 <TouchableOpacity
                     style={styles.calcButtonsMain}
-                    onPress={()=> Alert.alert("this is either 25lbs or 15kg")}
+                    onPress={()=> (poundsOrLbs === 0) ? buttonValuePress(25): buttonValuePress(15)}
                 >
                     {/*text will also be based of state thus a calculated value*/}
                     <Text>
@@ -85,7 +96,7 @@ export default CalculatorButtons = ({poundsOrLbs, units}) =>{
                 {/*10lbs or 10kgs */}
                 <TouchableOpacity
                     style={styles.calcButtonsMain}
-                    onPress={()=> Alert.alert("this will be 10lb and kgs")}
+                    onPress={()=> buttonValuePress(10)}
                 >
                     <Text>
                         {myStore.getState().buttonStates[myStore.getState().buttonStateChoice][3]}
@@ -252,7 +263,7 @@ export default CalculatorButtons = ({poundsOrLbs, units}) =>{
                 {/*clear button*/}
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("will clear value from our store to 0")}
+                    onPress={()=> clearCurrValue()}
                 >
                     <Text>
                         Clear
@@ -271,11 +282,28 @@ export default CalculatorButtons = ({poundsOrLbs, units}) =>{
 
                 </TouchableOpacity>
 
+
+                <TouchableOpacity
+                    style={styles.calcButtonsSmall}
+                    onPress={()=> Alert.alert("current operation: " + myStore.getState().operationValue)}
+                >
+
+
+                    <Text>
+                        =
+                    </Text>
+
+                </TouchableOpacity>
+
+
+
+
                 {/*pounds to kgs and vice versa*/}
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
                     onPress={unitSwitch}
                 >
+
 
                     {/*will also be calculated value switching between lbs and kgs*/}
                     <Text>

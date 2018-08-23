@@ -12,8 +12,9 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    //onClick: () => dispatch()
-
+    buttonValuePress: (value) => dispatch(myActions.changeCurrentCalcValue(value)),
+    clearCurrValue: () => dispatch(myActions.clearCurrentValue()),
+    changeOperator: (newOperator) => dispatch(myActions.changeOperatorValue(newOperator)),
 
 });
 

@@ -5,8 +5,9 @@ import NavBar from './NavBar'
 import CalculatedViewArea from './CalculatedViewArea'
 import myStore from '../myStore/myState'
 
+//this was bad namming because the container wrapper needs to do more than just that
 import PoundsOrKgsChange from '../containerComponents/PoundsOrKgsChange'
-
+import CalculatedViewContainer from '../containerComponents/CalculatedVeiwContainer'
 
  export default class CalculatorVeiw extends React.Component {
 
@@ -19,7 +20,8 @@ import PoundsOrKgsChange from '../containerComponents/PoundsOrKgsChange'
                 <NavBar/>
 
                 {/*this is where numbers are calculated*/}
-                <CalculatedViewArea curr={myStore.getState().currentCalcValue}/>
+                {/*need calculated view area to have a container component so we can view the change*/}
+                <CalculatedViewContainer/>
 
 
                 {/*this is the flex container for all the main calculator buttons*/}

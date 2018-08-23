@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, Text, View} from 'react-native';
 
 
-export default CalculatedViewArea = (props) => {
+export default CalculatedViewArea = ({currValue,units,poundsOrLbs}) => {
 
     return(
     <View style={styles.calculateArea}>
         {/*use state value inside of text thus a calculated value*/}
         {/*maybe add style so numbers are bigger and bold*/}
-        <Text style={styles.numberStyle}>{props.curr}</Text>
+        <Text style={styles.numberStyle}>{currValue + units[poundsOrLbs]}</Text>
     </View>
     )
 }
