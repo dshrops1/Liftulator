@@ -8,7 +8,8 @@ export default CalculatedViewArea = ({currValue,units,poundsOrLbs}) => {
     <View style={styles.calculateArea}>
         {/*use state value inside of text thus a calculated value*/}
         {/*maybe add style so numbers are bigger and bold*/}
-        <Text style={styles.numberStyle}>{currValue + units[poundsOrLbs]}</Text>
+        {/*add some logic here for checking if percent should be displayed or not*/}
+        <Text style={styles.numberStyle}>{currValue +  units[poundsOrLbs]}</Text>
     </View>
     )
 }

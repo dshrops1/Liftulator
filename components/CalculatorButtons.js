@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import myStore from '../myStore/myState'
 import myActions from "../myStore/myActions"
 
-export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clearCurrValue, changeOperator}) =>{
+export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clearCurrValue, changeOperator, appendNumber, equalsPressed}) =>{
 
     //take this whole thing out and do this logic in redux
      unitSwitch = () => {
@@ -30,13 +30,6 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
     }
 
 
-
-    operatorChange = (value) => {
-
-         // dispatch an action for changing something in state called operator which will be a string for current operation
-        //probally just make this come from a mapDispatchToProps as well
-    }
-
     return(
         <View style={styles.buttonsTop}>
             <View style={styles.calculatorButtonsFlex}>
@@ -48,6 +41,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
                 >
                     {/*text will also be based of state thus a calculated value*/}
                     <Text>
+                        {/*need to fix these they should come from poundsOrKgsChange */}
                         {myStore.getState().buttonStates[myStore.getState().buttonStateChoice][0]}
                     </Text>
                 </TouchableOpacity>
@@ -107,7 +101,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
                 {/*multiplication*/}
                 <TouchableOpacity
                     style={styles.calcButtonsMain}
-                    onPress={()=> Alert.alert("will multiple the current value by followed value")}
+                    onPress={()=> changeOperator('*')}
                 >
                     <Text>
                         *
@@ -125,7 +119,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 0")}
+                    onPress={()=> appendNumber('0')}
                 >
                     {/*text will also be based of state thus a calculated value*/}
                     <Text>
@@ -136,7 +130,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 1")}
+                    onPress={()=> appendNumber('1')}
                 >
                     <Text>
                         1
@@ -147,7 +141,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 2")}
+                    onPress={()=> appendNumber('2')}
                 >
                     <Text>
                         2
@@ -157,7 +151,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 3")}
+                    onPress={()=> appendNumber('3')}
                 >
                     <Text>
                         3
@@ -167,7 +161,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 4")}
+                    onPress={()=> appendNumber('4')}
                 >
                     <Text>
                         4
@@ -177,7 +171,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsOperators}
-                    onPress={()=> Alert.alert("will add next value to current value ")}
+                    onPress={()=> changeOperator('+')}
                 >
                     <Text>
                         +
@@ -194,7 +188,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 5 ")}
+                    onPress={()=> appendNumber('5')}
                 >
                     {/*text will also be based of state thus a calculated value*/}
                     <Text>
@@ -205,7 +199,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 6")}
+                    onPress={()=> appendNumber('6')}
                 >
                     <Text>
                         6
@@ -216,7 +210,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 7")}
+                    onPress={()=> appendNumber('7')}
                 >
                     <Text>
                         7
@@ -226,7 +220,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value 8")}
+                    onPress={()=> appendNumber('8')}
                 >
                     <Text>
                         8
@@ -236,7 +230,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("value of 9")}
+                    onPress={()=> appendNumber('9')}
                 >
                     <Text>
                         9
@@ -246,7 +240,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsOperators}
-                    onPress={()=> Alert.alert("will minus the next typed value from current value")}
+                    onPress={()=> changeOperator('-')}
                 >
                     <Text>
                         -
@@ -274,7 +268,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
                 {/*percent button*/}
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("will take percentage from next value and current value ex: if current value is 100 and next value after % is 10 then new current value will be 10")}
+                    onPress={()=> changeOperator('%')}
                 >
                     <Text>
                         %
@@ -285,7 +279,7 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
                 <TouchableOpacity
                     style={styles.calcButtonsSmall}
-                    onPress={()=> Alert.alert("current operation: " + myStore.getState().operationValue)}
+                    onPress={()=> equalsPressed()}
                 >
 
 

@@ -9,9 +9,10 @@ export default function reducers(state ={}, action){
         '-': function (x, y) {return x - y},
         '*': function (x, y) {return x * y},
         '/': function (x, y) {return x / y},
+        '%': function (x, y) {return Math.floor((y / 100) * x )}
     }
 
-    //(parseFloat((state.currentCalcValue / 2.2).toFixed(2))):(parseFloat((state.currentCalcValue * 2.2).toFixed(2)))
+//(Math.round(state.currentCalcValue * KILLO)
     switch(action.type){
         case "CHANGE_BUTTON_STATE_CHOICE":
             return {
@@ -23,9 +24,15 @@ export default function reducers(state ={}, action){
         case "CHANGE_CURRENT_CALC_VALUE":
             return {...state, currentCalcValue: MATHCHOICE[state.operationValue](state.currentCalcValue, action.payload.changeByValue)}
         case "CLEAR_CURRENT_VALUE":
-            return {...state, currentCalcValue: 0}
+            return {...state, currentCalcValue: 0, operationValue: '+',  stringOrder: '' }
         case "CHANGE_CURRENT_OPERATOR":
-            return {...state, operationValue:"/"}
+            return {...state, operationValue: action.payload.newOperator}
+        case "APPEND_NUMBER_TO_CALC_STRING":
+            return {...state, stringOrder: (state.stringOrder.length === 0 && action.payload.numberToAppend === '0') ? state.stringOrder: state.stringOrder + action.payload.numberToAppend}
+        case "CALC_EQUAL_PRESS":
+            //might refactor this one out so it happens in change_current_calc_value
+            return {...state, currentCalcValue: MATHCHOICE[state.operationValue](state.currentCalcValue, parseInt(state.stringOrder)), stringOrder: ''}
+
         default:
             return state
 

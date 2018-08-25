@@ -15,6 +15,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     buttonValuePress: (value) => dispatch(myActions.changeCurrentCalcValue(value)),
     clearCurrValue: () => dispatch(myActions.clearCurrentValue()),
     changeOperator: (newOperator) => dispatch(myActions.changeOperatorValue(newOperator)),
+    appendNumber: (numToAppend) => dispatch(myActions.appendNumberToCalculationString(numToAppend)),
+    equalsPressed: ()=> dispatch(myActions.calculateCurrentValueAfterEqualPress())
 
 });
 

@@ -2,8 +2,7 @@
 import React from "react";
 import { StyleSheet, View} from 'react-native';
 import NavBar from './NavBar'
-import CalculatedViewArea from './CalculatedViewArea'
-import myStore from '../myStore/myState'
+
 
 //this was bad namming because the container wrapper needs to do more than just that
 import PoundsOrKgsChange from '../containerComponents/PoundsOrKgsChange'

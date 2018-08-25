@@ -38,9 +38,30 @@
         }
     }
 
+    function appendNumberToCalculationString(numberToAppend){
+        return {
+            type: "APPEND_NUMBER_TO_CALC_STRING",
+            payload:{
+                numberToAppend
+            }
+        }
+    }
+
+    function calculateCurrentValueAfterEqualPress(){
+        return{
+            type: "CALC_EQUAL_PRESS"
+        }
+    }
 
 
-    return {changeCurrentCalcValue,changeButtonStateChoice,clearCurrentValue,changeOperatorValue}
+
+    return {changeCurrentCalcValue,
+            changeButtonStateChoice,
+            clearCurrentValue,
+            changeOperatorValue,
+            appendNumberToCalculationString,
+            calculateCurrentValueAfterEqualPress
+    }
 
 
 }
