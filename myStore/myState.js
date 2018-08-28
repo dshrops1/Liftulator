@@ -25,8 +25,6 @@ const initalState = {
     buttonStates: [[45,35,25,10],[25,20,15,10]], //values of our buttons first sub array is lbs second is kgs
     units: ["Lbs","Kgs"],
 
-    lastValue: '0'
-
 
 
 }
