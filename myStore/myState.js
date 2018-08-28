@@ -14,7 +14,7 @@ const initalState = {
 
     currentCalcValue: 0, //value that will be displayed
 
-    stringOrder: "", //this will be used to add values 0-9 so that we can easily click out values like 125
+    stringOrder: "0", //this will be used to add values 0-9 so that we can easily click out values like 125
                      // instead of having to change values by factors of 10 as in if we have 12 and click 5 then 1 in the 10's
                      // place needs to become the 100's place so instead we can just use strings and append and when needing to calculate we can then parse it
 
@@ -24,6 +24,8 @@ const initalState = {
     //third sub array is temporay while we fix some logic
     buttonStates: [[45,35,25,10],[25,20,15,10]], //values of our buttons first sub array is lbs second is kgs
     units: ["Lbs","Kgs"],
+
+    lastValue: '0'
 
 
 

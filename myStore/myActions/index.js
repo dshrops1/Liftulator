@@ -55,12 +55,14 @@
 
 
 
+
     return {changeCurrentCalcValue,
             changeButtonStateChoice,
             clearCurrentValue,
             changeOperatorValue,
             appendNumberToCalculationString,
-            calculateCurrentValueAfterEqualPress
+            calculateCurrentValueAfterEqualPress,
+
     }
 
 

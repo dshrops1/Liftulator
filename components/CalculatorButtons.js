@@ -1,13 +1,14 @@
 import React from "react";
 import {Alert} from "react-native";
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import myStore from '../myStore/myState'
 import myActions from "../myStore/myActions"
+import GeneralButton from "./GeneralButton"
 
 export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clearCurrValue, changeOperator, appendNumber, equalsPressed}) =>{
 
-    //take this whole thing out and do this logic in redux
-     unitSwitch = () => {
+    //should find a way to factor this out so we doint have to bring in store or actions here
+   const  unitSwitch = () => {
 
         switch(myStore.getState().buttonStateChoice){
             case 0:
@@ -29,285 +30,132 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
         }
     }
 
+   const createCommonButtons = (start,end)=>{
+
+         let buttons = []
+
+            for(let i = start; i <= end; i++){
+            buttons.push(
+            <GeneralButton
+                key={i}
+                functionProps={()=> appendNumber(i)}
+                styleProps={styles.calcButtonsSmall}
+                textProps={i}
+            />)
+        }
+
+        return buttons;
+    }
+
 
     return(
         <View style={styles.buttonsTop}>
             <View style={styles.calculatorButtonsFlex}>
 
                 {/*45lbs or 25kgs*/}
-                <TouchableOpacity
-                    style={styles.calcButtonsMain}
-                    onPress={()=>(poundsOrLbs === 0) ? buttonValuePress(45): buttonValuePress(25)}
-                >
-                    {/*text will also be based of state thus a calculated value*/}
-                    <Text>
-                        {/*need to fix these they should come from poundsOrKgsChange */}
-                        {myStore.getState().buttonStates[myStore.getState().buttonStateChoice][0]}
-                    </Text>
-                </TouchableOpacity>
+                <GeneralButton
+                    functionProps={()=>(poundsOrLbs === 0) ? buttonValuePress(45): buttonValuePress(25)}
+                    textProps={myStore.getState().buttonStates[myStore.getState().buttonStateChoice][0]}
+                    styleProps={styles.calcButtonsMain}
+                />
 
                 {/*35lbs or 20kgs */}
-                <TouchableOpacity
-                    style={styles.calcButtonsMain}
-                    onPress={()=> (poundsOrLbs === 0) ? buttonValuePress(35): buttonValuePress(20)}
-                >
-                    <Text>
-                        {myStore.getState().buttonStates[myStore.getState().buttonStateChoice][1]}
-                    </Text>
+                <GeneralButton
+                    functionProps={()=> (poundsOrLbs === 0) ? buttonValuePress(35): buttonValuePress(20)}
+                    textProps={myStore.getState().buttonStates[myStore.getState().buttonStateChoice][1]}
+                    styleProps={styles.calcButtonsMain}
+                />
 
-                </TouchableOpacity>
-
-                {/*division */}
-                <TouchableOpacity
-                    style={styles.calcButtonsMain}
-                    onPress={()=> changeOperator("/") }
-                >
-                    <Text>
-                        /
-                    </Text>
-
-                </TouchableOpacity>
-
-
+                {/*division operator */}
+                <GeneralButton
+                    functionProps={()=> changeOperator("/")}
+                    styleProps={styles.calcButtonsMain}
+                    textProps={"/"}
+                />
 
             </View>
-
 
             {/*second row of main buttons*/}
             <View style={styles.calculatorButtonsFlex}>
 
                 {/*25lbs or 15kgs*/}
-                <TouchableOpacity
-                    style={styles.calcButtonsMain}
-                    onPress={()=> (poundsOrLbs === 0) ? buttonValuePress(25): buttonValuePress(15)}
-                >
-                    {/*text will also be based of state thus a calculated value*/}
-                    <Text>
-                        {myStore.getState().buttonStates[myStore.getState().buttonStateChoice][2]}
-                    </Text>
-                </TouchableOpacity>
+                <GeneralButton
+                    functionProps={()=> (poundsOrLbs === 0) ? buttonValuePress(25): buttonValuePress(15)}
+                    styleProps={styles.calcButtonsMain}
+                    textProps={myStore.getState().buttonStates[myStore.getState().buttonStateChoice][2]}
+                />
 
                 {/*10lbs or 10kgs */}
-                <TouchableOpacity
-                    style={styles.calcButtonsMain}
-                    onPress={()=> buttonValuePress(10)}
-                >
-                    <Text>
-                        {myStore.getState().buttonStates[myStore.getState().buttonStateChoice][3]}
-                    </Text>
+                <GeneralButton
+                    functionProps={()=> buttonValuePress(10)}
+                    styleProps={styles.calcButtonsMain}
+                    textProps={myStore.getState().buttonStates[myStore.getState().buttonStateChoice][3]}
+                />
 
-                </TouchableOpacity>
-
-                {/*multiplication*/}
-                <TouchableOpacity
-                    style={styles.calcButtonsMain}
-                    onPress={()=> changeOperator('*')}
-                >
-                    <Text>
-                        *
-                    </Text>
-
-                </TouchableOpacity>
-
+                {/*multiplication operator*/}
+                <GeneralButton
+                    functionProps={()=> changeOperator('*')}
+                    styleProps={styles.calcButtonsMain}
+                    textProps={"*"}
+                />
 
             </View>
-
 
             {/*calculator number pad*/}
             <View style={styles.calculatorButtonsFlex}>
 
+                {/*creates buttons 0-4*/}
+                {createCommonButtons(0,4)}
 
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('0')}
-                >
-                    {/*text will also be based of state thus a calculated value*/}
-                    <Text>
-                        0
-                    </Text>
-                </TouchableOpacity>
-
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('1')}
-                >
-                    <Text>
-                        1
-                    </Text>
-
-                </TouchableOpacity>
-
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('2')}
-                >
-                    <Text>
-                        2
-                    </Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('3')}
-                >
-                    <Text>
-                        3
-                    </Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('4')}
-                >
-                    <Text>
-                        4
-                    </Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.calcButtonsOperators}
-                    onPress={()=> changeOperator('+')}
-                >
-                    <Text>
-                        +
-                    </Text>
-
-                </TouchableOpacity>
-
+                <GeneralButton
+                    functionProps={()=> changeOperator('+')}
+                    styleProps={styles.calcButtonsOperators}
+                    textProps={"+"}
+                />
 
             </View>
 
             {/*second part of calculator number pad */}
             <View style={styles.calculatorButtonsFlex}>
 
+                {/*creates butons 5-9*/}
+                {createCommonButtons(5,9)}
 
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('5')}
-                >
-                    {/*text will also be based of state thus a calculated value*/}
-                    <Text>
-                        5
-                    </Text>
-                </TouchableOpacity>
-
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('6')}
-                >
-                    <Text>
-                        6
-                    </Text>
-
-                </TouchableOpacity>
-
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('7')}
-                >
-                    <Text>
-                        7
-                    </Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('8')}
-                >
-                    <Text>
-                        8
-                    </Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> appendNumber('9')}
-                >
-                    <Text>
-                        9
-                    </Text>
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.calcButtonsOperators}
-                    onPress={()=> changeOperator('-')}
-                >
-                    <Text>
-                        -
-                    </Text>
-
-                </TouchableOpacity>
-
+                <GeneralButton
+                    functionProps={()=> changeOperator('-')}
+                    styleProps={styles.calcButtonsOperators}
+                    textProps={"-"}
+                />
 
             </View>
-
 
             <View style={styles.calculatorButtonsFlex}>
 
-                {/*clear button*/}
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> clearCurrValue()}
-                >
-                    <Text>
-                        Clear
-                    </Text>
+                <GeneralButton
+                    functionProps={()=> clearCurrValue()}
+                    styleProps={styles.calcButtonsSmall}
+                    textProps={"Clear"}
+                />
 
-                </TouchableOpacity>
+                <GeneralButton
+                    functionProps={()=> changeOperator('%')}
+                    styleProps={styles.calcButtonsSmall}
+                    textProps={"%"}
+                />
 
-                {/*percent button*/}
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> changeOperator('%')}
-                >
-                    <Text>
-                        %
-                    </Text>
+                <GeneralButton
+                    functionProps={()=> equalsPressed()}
+                    styleProps={styles.calcButtonsSmall}
+                    textProps={"="}
+                />
 
-                </TouchableOpacity>
-
-
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={()=> equalsPressed()}
-                >
-
-
-                    <Text>
-                        =
-                    </Text>
-
-                </TouchableOpacity>
-
-
-
-
-                {/*pounds to kgs and vice versa*/}
-                <TouchableOpacity
-                    style={styles.calcButtonsSmall}
-                    onPress={unitSwitch}
-                >
-
-
-                    {/*will also be calculated value switching between lbs and kgs*/}
-                    <Text>
-                        {units[poundsOrLbs]}
-                    </Text>
-
-                </TouchableOpacity>
+                <GeneralButton
+                    functionProps={unitSwitch}
+                    styleProps={styles.calcButtonsSmall}
+                    textProps={units[poundsOrLbs]}
+                />
 
             </View>
-
 
         </View>
     )

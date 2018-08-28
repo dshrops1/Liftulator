@@ -3,7 +3,8 @@
 import React from "react";
 import {Alert} from "react-native";
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-
+import Icon from 'react-native-vector-icons/Octicons'
+import Bolt from 'react-native-vector-icons/FontAwesome'
 export default  NavBar = () => {
 
     return(
@@ -15,14 +16,21 @@ export default  NavBar = () => {
             style={styles.navButtons}
             onPress={()=> Alert.alert("this is navigation")}
         >
-            <Text> hamburger icon </Text>
+            <Text>
+                <Icon
+                    name='three-bars'
+                    size={30}
+                    color='#000'
+
+                />
+            </Text>
 
         </TouchableOpacity>
 
         {/*here is were our logo will go */}
         <View style={styles.logoContainer}>
 
-            <Text style={styles.logoSpace}>Logo</Text>
+            <Text style={styles.logoSpace}>LIFTULATOR</Text>
 
         </View>
 
@@ -31,7 +39,12 @@ export default  NavBar = () => {
             style={styles.navButtons}
             onPress={()=> Alert.alert("this is adding new PR")}
         >
-            <Text> PR </Text>
+            <Text>
+                <Bolt
+                    name="bolt"
+                    size={30}
+                />
+            </Text>
         </TouchableOpacity>
     </View>)
 
@@ -65,15 +78,20 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
 
+
     },
 
     logoSpace : {
         flex: 1,
         height: 60,
         padding: 10,
-        paddingTop: 22
+        paddingTop: 22,
+        fontSize: 25,
+
+
 
 
     },
+
 
 })

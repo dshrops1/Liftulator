@@ -22,17 +22,16 @@ export default function reducers(state ={}, action){
                 currentCalcValue: (action.payload.value === 1) ? (parseFloat((state.currentCalcValue / KILLO).toFixed(2))) : (Math.round(state.currentCalcValue * KILLO))
             }
         case "CHANGE_CURRENT_CALC_VALUE":
-            return {...state, currentCalcValue: MATHCHOICE[state.operationValue](state.currentCalcValue, action.payload.changeByValue)}
+            return {...state, currentCalcValue: MATHCHOICE[state.operationValue](state.currentCalcValue, action.payload.changeByValue) , stringOrder: action.payload.changeByValue.toString()}
         case "CLEAR_CURRENT_VALUE":
-            return {...state, currentCalcValue: 0, operationValue: '+',  stringOrder: '' }
+            return {...state, currentCalcValue: 0, operationValue: '+',  stringOrder: '0' }
         case "CHANGE_CURRENT_OPERATOR":
-            return {...state, operationValue: action.payload.newOperator}
+            return {...state, operationValue: action.payload.newOperator, stringOrder: '0'}
         case "APPEND_NUMBER_TO_CALC_STRING":
             return {...state, stringOrder: (state.stringOrder.length === 0 && action.payload.numberToAppend === '0') ? state.stringOrder: state.stringOrder + action.payload.numberToAppend}
         case "CALC_EQUAL_PRESS":
             //might refactor this one out so it happens in change_current_calc_value
-            return {...state, currentCalcValue: MATHCHOICE[state.operationValue](state.currentCalcValue, parseInt(state.stringOrder)), stringOrder: ''}
-
+            return {...state, currentCalcValue: MATHCHOICE[state.operationValue](state.currentCalcValue, parseInt(state.stringOrder))}
         default:
             return state
 
