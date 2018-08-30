@@ -1,17 +1,55 @@
 import React from 'react';
 import GeneralButton from '../GeneralButton'
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Alert} from 'react-native';
 
-export default NavigationChoices = () => {
+export default NavigationChoices = (props) => {
 
     return(
-        <View>
+        <View style={styles.flexView}>
 
-            <Text>
-                this will be were we can route back to calculator as well as
-                to workouts and friends and whatever other components we may have
-            </Text>
+                {/*to calculator*/}
+                <GeneralButton
+                    textProps={"Calculator"}
+                    styleProps={styles.navButtons}
+                    functionProps={()=> props.navigation.navigate("calculator")}
+                />
+                {/*to friends*/}
+                <GeneralButton
+                    textProps={"Friends"}
+                    styleProps={styles.navButtons}
+                    functionProps={()=> Alert.alert("to Friends")}
+                />
+                {/*to personal records*/}
+                <GeneralButton
+                    textProps={"Personal Records"}
+                    styleProps={styles.navButtons}
+                    functionProps={()=> Alert.alert("to PR")}
+                />
+
         </View>
 
     )
 }
+
+const styles = StyleSheet.create({
+    flexView : {
+        display: "flex",
+        flex: 1,
+        justifyContent: "space-evenly",
+        alignItems: "center",
+
+    },
+
+    navButtons : {
+        width: 150,
+        height: 100,
+        backgroundColor: "green",
+        justifyContent: "center",
+        alignItems: "center",
+        elevation: 200,
+        borderWidth: 5,
+
+    }
+
+
+})
