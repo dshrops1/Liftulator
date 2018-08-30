@@ -16,7 +16,7 @@ import CalculatedViewContainer from '../containerComponents/CalculatedVeiwContai
             // Top container for calculator veiw
             <View  style={styles.topContainer}>
 
-                <NavBar/>
+                <NavBar propsClick={this.props.navigation}/>
 
                 {/*this is where numbers are calculated*/}
                 {/*need calculated view area to have a container component so we can view the change*/}

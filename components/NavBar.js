@@ -5,7 +5,7 @@ import {Alert} from "react-native";
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons'
 import Bolt from 'react-native-vector-icons/FontAwesome'
-export default  NavBar = () => {
+export default  NavBar = (props) => {
 
     return(
 
@@ -14,7 +14,7 @@ export default  NavBar = () => {
         {/*hamburger button will change the view to a navigation pane*/}
         <TouchableOpacity
             style={styles.navButtons}
-            onPress={()=> Alert.alert("this is navigation")}
+            onPress={()=> props.propsClick.navigate('nav')}
         >
             <Text>
                 <Icon

@@ -5,6 +5,7 @@ import myStore from '../myStore/myState'
 import myActions from "../myStore/myActions"
 import GeneralButton from "./GeneralButton"
 
+
 export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clearCurrValue, changeOperator, appendNumber, equalsPressed}) =>{
 
     //should find a way to factor this out so we doint have to bring in store or actions here
