@@ -5,6 +5,7 @@ import {Alert} from "react-native";
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons'
 import Bolt from 'react-native-vector-icons/FontAwesome'
+
 export default  NavBar = (props) => {
 
     return(
@@ -37,7 +38,7 @@ export default  NavBar = (props) => {
         {/*allows user to quickly add new PR to common lift maybe using some sort of alert with inputs*/}
         <TouchableOpacity
             style={styles.navButtons}
-            onPress={()=> Alert.alert("this is adding new PR")}
+            onPress={()=> props.propsClick.navigate('addPr') }
         >
             <Text>
                 <Bolt
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         flexDirection: "row",
-        backgroundColor: 'white',
+        backgroundColor: "#FFEEAD",
         paddingTop: 25,
     },
     navButtons: {
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
         height: 60,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#FFEEAD",
 
 
     },
@@ -87,6 +89,7 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 22,
         fontSize: 25,
+        backgroundColor: "#FFEEAD",
 
 
 

@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         justifyContent: "flex-start",
-        alignItems: "stretch"
+        alignItems: "stretch",
+
 
 
     },

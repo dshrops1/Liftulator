@@ -13,7 +13,7 @@ const  GeneralButton = (props) => {
             style={props.styleProps}
         >
 
-            <Text>
+            <Text style={{fontSize: 25}}>
 
                 {props.textProps}
             </Text>

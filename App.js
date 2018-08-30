@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation'
 
 import CalculatorVeiw from './components/CalculatorVeiw'
 import NavigationChoices from './components/otherViews/NavigationChoices'
+import AddPR from "./components/otherViews/AddPR"
 import myState from "./myStore/myState"
 
 
@@ -24,6 +25,12 @@ const RootStack = createStackNavigator(
           }
 
         },
+        addPr: {
+          screen: AddPR,
+          navigationOptions: {
+            header: null
+          }
+        }
 
 
     },

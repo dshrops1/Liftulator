@@ -23,7 +23,7 @@ export default NavigationChoices = (props) => {
                 <GeneralButton
                     textProps={"Personal Records"}
                     styleProps={styles.navButtons}
-                    functionProps={()=> Alert.alert("to PR")}
+                    functionProps={()=> props.navigation.navigate('addPr')}
                 />
 
         </View>
@@ -37,17 +37,21 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-evenly",
         alignItems: "center",
+        backgroundColor: "#FFEEAD",
+
 
     },
 
     navButtons : {
-        width: 150,
+        //width: 150,
+        alignSelf: "stretch",
         height: 100,
         backgroundColor: "green",
         justifyContent: "center",
         alignItems: "center",
         elevation: 200,
         borderWidth: 5,
+
 
     }
 
