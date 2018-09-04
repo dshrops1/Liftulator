@@ -53,6 +53,24 @@
         }
     }
 
+    function changeLiftValue(liftValue){
+        return{
+            type: "CHANGE_LIFT_VALUE",
+            payload: {
+                liftValue
+            }
+        }
+    }
+
+    function changeReturnLifts(newArrayValue){
+        return{
+            type: "CHANGE_RETURN_LIFTS",
+            payload: {
+                newArrayValue
+            }
+        }
+    }
+
 
 
 
@@ -62,6 +80,8 @@
             changeOperatorValue,
             appendNumberToCalculationString,
             calculateCurrentValueAfterEqualPress,
+            changeLiftValue,
+            changeReturnLifts,
 
     }
 

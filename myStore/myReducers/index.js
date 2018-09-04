@@ -32,7 +32,12 @@ export default function reducers(state ={}, action){
         case "CALC_EQUAL_PRESS":
             //might refactor this one out so it happens in change_current_calc_value
             return {...state, currentCalcValue: MATHCHOICE[state.operationValue](state.currentCalcValue, parseInt(state.stringOrder))}
-        default:
+
+        case "CHANGE_LIFT_VALUE":
+            return {...state, liftChoice: action.payload.liftValue}
+        case "CHANGE_RETURN_LIFTS":
+            return {...state, returnLifts: action.payload.newArrayValue }
+            default:
             return state
 
     }

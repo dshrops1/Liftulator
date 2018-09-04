@@ -11,6 +11,8 @@
 
 import { createStore } from "redux";
 import mainReducer from './myReducers/index'
+import {Text} from "react-native"
+import React from 'react'
 
 const initalState = {
 
@@ -26,7 +28,8 @@ const initalState = {
     buttonStateChoice: 0, //alter between 1 and two used to change buttons
     buttonStates: [[45,35,25,10],[25,20,15,10]], //values of our buttons first sub array is lbs second is kgs
     units: ["Lbs","Kgs"], //used for display  as well as to deter the associated sub array values uses that are maped to buttons
-
+    liftChoice: "DeadLift", //used so we can access value to store locally
+    returnLifts: []
 
 }
 
