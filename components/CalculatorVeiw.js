@@ -30,9 +30,6 @@ import CalculatedViewContainer from '../containerComponents/CalculatedVeiwContai
             </View>
 
 
-
-
-
         );
     }
 }

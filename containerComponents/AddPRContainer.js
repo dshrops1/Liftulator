@@ -7,7 +7,7 @@ import AddPR from '../components/otherViews/AddPR'
 const mapStateToProps = (state) => ({
      currValue: state.currentCalcValue,
      currLift: state.liftChoice,
-
+     lbsorkgs: state.buttonStateChoice
 
 
 
@@ -15,10 +15,12 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    //onClick: () => dispatch()
-    //in here we can map any dispatch we are using in CalculatorButtons to a props function and just use that
-    //after that we should be able to get rid of the store.
-    onClick: (liftValue) => dispatch(myActions.changeLiftValue(liftValue))
+
+    onClick: (liftValue) => dispatch(myActions.changeLiftValue(liftValue)),
+    transformToLBS: (buttonState) => dispatch(myActions.changeButtonStateChoice(buttonState)),
+    //if button state choice is 1 we need to transform it back to lbs before storing it
+    clearCalc: ()=> dispatch(myActions.clearCurrentValue()),
+    navigateBack: ()=> ownProps.navigation.navigate("calculator"),
 
 });
 

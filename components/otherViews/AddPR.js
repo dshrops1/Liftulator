@@ -1,46 +1,44 @@
 import {Text,View, AsyncStorage, Picker, Alert, StyleSheet} from 'react-native'
 import React from 'react'
 import GeneralButton from "../GeneralButton"
+import {sagaMiddleware} from '../../myStore/myState'
+import {saveToLocal} from '../../myStore/sagas'
 
 
 
 export default AddPR = (props) =>{
 
 
-    const _storeData = async (lift, value) => {
-        try {
+    const getReadyToStore = () =>{
 
-            await AsyncStorage.setItem(lift.toString(), value.toString());
-        } catch (error) {
-            // Error saving data
-            Alert.alert("did not save. Try again")
-        }
+        props.navigateBack()
+        sagaMiddleware.run(saveToLocal)
+
+
     }
 
-
     return(
-        <View>
-            <Text>
+        <View style={styles.viewBox}>
 
-
-            </Text>
 
             {/*set picker choice to our redux store using onValueChange()*/}
             <Picker
                 onValueChange={(itemValue)=>props.onClick(itemValue)}
                 selectedValue={props.currLift}
+
             >
                 <Picker.Item label="DeadLift" value="DeadLift"/>
                 <Picker.Item label="Squat" value="Squat"/>
                 <Picker.Item label="BenchPress" value="BenchPress"/>
-                {/*what do we need to add to our state object for all of this*/}
+
             </Picker>
 
-            <Text>Your new PR: {props.currValue}</Text>
+            <Text style={styles.flexChild}>Your new PR: {props.currValue}</Text>
 
             <GeneralButton
                 textProps="Submit"
-                functionProps={()=> _storeData(props.currLift, props.currValue)}
+                functionProps={()=> getReadyToStore() }
+                styleProps={styles.navButtons}
 
             />
 
@@ -52,3 +50,40 @@ export default AddPR = (props) =>{
 
     )
 }
+
+
+const styles = StyleSheet.create({
+
+    viewBox: {
+
+        display: "flex",
+        flex: 1,
+        justifyContent: "space-around",
+        backgroundColor: "#FFEEAD",
+
+    },
+
+    flexChild: {
+
+        fontSize: 28,
+        height: 100,
+        textAlign: "center",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    navButtons : {
+        alignSelf: "stretch",
+        height: 100,
+        backgroundColor: "green",
+        justifyContent: "center",
+        alignItems: "center",
+        elevation: 200,
+        borderWidth: 5,
+
+
+    }
+
+
+
+})

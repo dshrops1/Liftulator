@@ -13,11 +13,8 @@ export default CalculatorButtons = ({poundsOrLbs, units, buttonValuePress, clear
 
         switch(myStore.getState().buttonStateChoice){
             case 0:
-                //going to dispatch an action here
+
                 myStore.dispatch(myActions.changeButtonStateChoice(1))
-
-                //another dispatch here for converting from lbs to kgs - make associateed action-
-
 
                 break;
             case 1:

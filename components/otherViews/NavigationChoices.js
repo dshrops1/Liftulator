@@ -7,6 +7,7 @@ export default NavigationChoices = (props) => {
     const  retrieveData = async () => {
         try {
 
+
             let toReturn =[];
             let deadLift = await AsyncStorage.getItem("DeadLift")
             toReturn.push(<Text>DeadLift:  {deadLift}</Text>)
@@ -15,8 +16,8 @@ export default NavigationChoices = (props) => {
             let squat = await AsyncStorage.getItem("Squat")
             toReturn.push(<Text>Squat:  {squat}</Text>)
 
-           // let keys = await AsyncStorage.getItem("DeadLift")
-           // toReturn.push(<Text>DeadLift: {keys}</Text>)
+            //refactor this so we grab all keys and just get an array of key values instead of grabbing
+            //each one individually
 
 
 
@@ -26,6 +27,13 @@ export default NavigationChoices = (props) => {
             // Error retrieving data
             return [error]
         }
+    }
+
+
+    const multiTest = async () => {
+
+        props.onClick( await retrieveData());
+        props.navigation.navigate('viewPRs');
     }
 
     return(
@@ -49,26 +57,12 @@ export default NavigationChoices = (props) => {
                     styleProps={styles.navButtons}
                     //here we should navigate to PersonalRecords instead.
 
-                    //issue here with our onclick not getting right data into redux
-                    functionProps={  ()=> {
-                        // props.onClick(retrieveData());
-                        props.navigation.navigate('viewPRs');
 
+                    functionProps={  ()=> {
+                        multiTest()
                     }}
                 />
 
-            <GeneralButton
-                textProps={"update records"}
-                styleProps={styles.navButtons}
-                //here we should navigate to PersonalRecords instead.
-
-                //issue here with our onclick not getting right data into redux
-                functionProps={  async ()=> {
-                     props.onClick(await retrieveData());
-                    //props.navigation.navigate('viewPRs');
-
-                }}
-            />
 
         </View>
 

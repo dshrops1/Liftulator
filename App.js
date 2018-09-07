@@ -3,11 +3,10 @@ import {Provider} from "react-redux"
 import { createStackNavigator } from 'react-navigation'
 
 import CalculatorVeiw from './components/CalculatorVeiw'
-import NavigationChoices from './components/otherViews/NavigationChoices'
-import AddPR from "./components/otherViews/AddPR"
+
 import myState from "./myStore/myState"
 import AddPRContainer from "./containerComponents/AddPRContainer";
-import PersonalRecords from "./components/otherViews/PersonalRecords";
+
 import NavigationChoicesContainer from './containerComponents/NavigationChoicesContainer'
 import PersonalRecordsContainer from "./containerComponents/PersonalRecordsContainer";
 
@@ -55,7 +54,6 @@ export default class App extends React.Component {
     return (
 
       <Provider store={myState}>
-        {/*<CalculatorVeiw/>*/}
         <RootStack/>
       </Provider>
 

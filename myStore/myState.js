@@ -9,10 +9,13 @@
 
 
 
-import { createStore } from "redux";
+import { createStore, applyMiddleware} from "redux";
 import mainReducer from './myReducers/index'
+import createSagaMiddleware from 'redux-saga'
 import {Text} from "react-native"
 import React from 'react'
+
+
 
 const initalState = {
 
@@ -33,7 +36,8 @@ const initalState = {
 
 }
 
+//export this and use it were I need
+export const sagaMiddleware = createSagaMiddleware()
 
-
-const store = createStore(mainReducer, initalState);
+const store = createStore(mainReducer, initalState, applyMiddleware(sagaMiddleware));
 export default store;

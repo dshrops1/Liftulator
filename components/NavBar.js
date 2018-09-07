@@ -1,10 +1,7 @@
-//refactor navication bar out into this
-
 import React from "react";
-import {Alert} from "react-native";
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/Octicons'
-import Bolt from 'react-native-vector-icons/FontAwesome'
+ import Icon from 'react-native-vector-icons/Octicons'
+ import Bolt from 'react-native-vector-icons/FontAwesome'
 
 export default  NavBar = (props) => {
 
@@ -24,6 +21,7 @@ export default  NavBar = (props) => {
                     color='#000'
 
                 />
+
             </Text>
 
         </TouchableOpacity>
@@ -45,6 +43,7 @@ export default  NavBar = (props) => {
                     name="bolt"
                     size={30}
                 />
+
             </Text>
         </TouchableOpacity>
     </View>)
